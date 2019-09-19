@@ -2,7 +2,6 @@ package com.people10.customersapp.service;
 
 import com.people10.customersapp.model.Customer;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
