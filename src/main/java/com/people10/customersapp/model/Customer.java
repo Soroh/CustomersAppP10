@@ -3,10 +3,9 @@ package com.people10.customersapp.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
-
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 
@@ -19,12 +18,16 @@ public class Customer {
     @Column(name = "id")
     private Integer customerId;
     @Column(nullable = true)
+    @NotBlank(message = "Blank values not allowed**")
     private String firstName;
     @Column(nullable = true)
+    @NotBlank(message = "Blank values not allowed**")
     private String lastName;
     @Column(nullable = true)
+    @NotBlank(message = "Blank values not allowed**")
     private String email;
     @Column(nullable = true)
+    @NotBlank(message = "Blank values not allowed**")
     private String ip;
     @Column(nullable = true)
     private double latitude;
@@ -35,7 +38,6 @@ public class Customer {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
-
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
@@ -95,7 +97,6 @@ public class Customer {
         this.longitude = longitude;
     }
 
-    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }

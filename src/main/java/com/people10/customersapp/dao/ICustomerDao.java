@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ICustomerDao extends JpaRepository<Customer, Integer> {
-    List<Customer> findByFirstNameContainingOrLastNameContainingOrEmailContainingOrIpContaining(String fName,String lName,String email,String ip);
+    List<Customer> findByFirstNameContainingOrLastNameContainingOrEmailContainingOrIpContainingOrderByLastNameAsc(String fName,String lName,String email,String ip);
 }

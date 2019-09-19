@@ -1,11 +1,15 @@
 //Appends all customers to customer div
+var customerData;
+var pageNo;
 function loadCustomers() {
+    pageNo=0;
         $.ajax({
         type: "GET",
         dataType: 'json',
         url: "/customers",
         success: function (customers) {
-            populateCustomer(customers)
+            customerData=customers;
+            populateCustomer(customers);
     }
     });
     }
@@ -56,6 +60,9 @@ function getCustomer(customerId) {
                           "</tr>";
                 }
                 content+="</table>";
+
+
+
                     document.getElementById("customer-orders").innerHTML=content;
                 }
             }
@@ -86,23 +93,25 @@ function myDelFunction(customerId) {
 $("#search-bar").keyup(function (keyPressed) {
     clearTimeout($.data(this, 'timer'));
     if($("#search-bar").val()==="")
-        loadCustomers();
-    else if (keyPressed.keyCode == 13)
+        loadCustomers();//loads data from database if search box empty
+    else if (keyPressed.keyCode === 13)
         DataFromJson(true);
     else{
-        $(this).data('timer', setTimeout(DataFromJson, 750));
+        $(this).data('timer', setTimeout(DataFromJson, 500));
         //sets the timer between the key press from keyboard and the search
     }
 })
 
 function DataFromJson(force){
     var searchValue = $("#search-bar").val();        //fetching the value from the textbox
+    pageNo=0
         $.ajax({
         type: "GET",
         dataType: 'json',
         url: "/customer/search/"+searchValue,
         success: function (customersData) {
-            populateCustomer(customersData);
+            customerData=customersData;
+            populateCustomer(customerData);
         }
 });
 }
@@ -110,8 +119,9 @@ function DataFromJson(force){
 
 function populateCustomer(data){
     document.getElementById("customers-div").innerHTML="";
+
        if (data.length>0) {
-           var content="<table class='table'>";
+           var content="<table class='table table-striped'>";
             content+="<tr>" +
                 "<th>SN</th>" +
                 "<th>Last Name</th>" +
@@ -124,7 +134,7 @@ function populateCustomer(data){
                 "<th>Updated on</th>" +
                 "<th colspan='3' style='text-align: center'>Admin Operations</th>" +
                 "</tr>";
-        for(var i=0;i<data.length;i++)
+        for(var i=pageNo*10; i<pageNo*10+10 & i<data.length;i++)
         {
             content+="<tr id='row"+i+"' style='text-align: left'>" +
                 "<td>"+(i+1)+"</td>" +
@@ -140,9 +150,24 @@ function populateCustomer(data){
                 "<td><a href='/home/new-customer/"+data[i].customerId+"'> <button class='btn btn-warning btn-sm  glyphicon glyphicon-pencil' >&nbsp;Update</button></a></td>"+
                 "<td><button class='btn btn-danger btn-sm  glyphicon glyphicon-trash ' onclick='myDelFunction("+data[i].customerId+")'>&nbsp;Delete</button></td>"+
                 "</tr>";
+            if(i===(data.length-1)){
+                   document.getElementById("next-page").style.display = "none";
+
+            }else  document.getElementById("next-page").style.display = "inline";
+            if(i<10){
+                document.getElementById("prev-page").style.display = "none";
+
+            }else  document.getElementById("prev-page").style.display = "inline";
+
+            document.getElementById("curr-page").innerText="Page "+ (pageNo+1) +" of " + ((data.length%10==0)?data.length/10:Math.trunc(data.length/10+1));
+
         }
         content+="</table>";
+
         $('#customers-div').append(content);  //this is to append the data fetched from json to the table
+
+
+
     }else {
            document.getElementById("customers-div").innerHTML="";
            content="" +

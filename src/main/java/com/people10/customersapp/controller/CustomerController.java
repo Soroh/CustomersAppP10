@@ -1,6 +1,5 @@
 package com.people10.customersapp.controller;
 
-import com.people10.customersapp.dao.ICustomerDao;
 import com.people10.customersapp.model.Customer;
 import com.people10.customersapp.service.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,14 @@ import java.util.List;
 
 @RestController
 public class CustomerController {
+
     @Autowired
     private CustomerServiceImpl customerService;
 
     @GetMapping("customers")
     public List<Customer> customers(){
-        return customerService.findAll();
+
+       return customerService.findAll();
     }
 
     //Returns a list of all customers
@@ -42,7 +43,8 @@ public class CustomerController {
     @PostMapping(value ="customer")
     public Customer saveCustomer(@RequestBody Customer customer){
 
-        return customerService.saveCustomer(customer);
+       return customerService.saveCustomer(customer);
+
     }
 
     //Deletes Customer
@@ -52,7 +54,6 @@ public class CustomerController {
         Customer customer = customerService.findById(id);
         customerService.deleteCustomer(id);
         return customer;
-
     }
 
 }

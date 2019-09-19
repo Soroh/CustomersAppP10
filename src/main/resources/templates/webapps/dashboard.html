@@ -13,11 +13,10 @@
 <!--  layout block-->
 
       <!-- Good luck -->
-    <h1>Dashboard</h1>
+          <div class="mx-auto col-sm-12">
+          <span style="width:50%;float: left;"> <h1>Customer Dashboard</h1></span>
 
-      <div class="mx-auto col-sm-12">
-          <span style="width:50%;float: left;"> <h1> Customers List</h1></span><br><br>
-          <span >
+          <span ><br>
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width:35%;float: right;">
 
                 <div class="form-inline ml-auto"  >
@@ -30,14 +29,29 @@
 
             </div>
           </span>
-          <br>
+
           <hr>
 
           <!--    Div that contains customers list in a table format-->
-            <div id="customers-div" class="mx-auto col-sm-12">
+            <div id="customers-div" class="mx-auto col-sm-12" style="box-shadow: 1px 1px 1px 2px gray;padding:2%">
 
 
             </div>
+          <div class="container">
+              <ul class="pagination pagination-lg">
+                  <li id="prev-page"><a href="#" onclick="function decrementPNo() {
+                      pageNo=pageNo-1;
+                      populateCustomer(customerData);
+                  }
+                  decrementPNo()">&laquo; Previous</a></li>
+                  <li><a href="#"id="curr-page"></a></li>
+                  <li id="next-page"><a href="#" onclick="function incrementPno() {
+                      pageNo+=1;
+                      populateCustomer(customerData);
+                  }
+                  incrementPno()">Next &raquo;</a></li>
+              </ul>
+          </div>
       </div>
 <!--    The model for viewing the profile-->
     <div class="container">

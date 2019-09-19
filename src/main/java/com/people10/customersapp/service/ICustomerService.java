@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface ICustomerService {
-    List<Customer> getAllCustomersPaged(int pageNo);
+    Page<Customer> getAllCustomersPaged(int pageNo);
 
     List<Customer> searchCustomers(String searchTerm);
 
