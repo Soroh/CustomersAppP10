@@ -21,25 +21,37 @@
 
                 <div class="form-inline ml-auto"  >
                     <div class="md-form my-0">
-                        <input id="search-bar" class="form-control" type="text" name="search" required placeholder="Search" aria-label="Search">
-                        <button href="#!" class="btn btn-primary btn-md my-0 ml-sm-2" ><i class="glyphicon glyphicon-search"></i> Search</button>
+                        <input id="search-bar" class="form-control" type="text" name="search" required placeholder="Search" aria-label="Search"  onkeyup="search()">
+                        <button href="#!" class="btn btn-primary btn-md my-0 ml-sm-2" onclick="searchData()"><i class="glyphicon glyphicon-search"></i> Search</button>
                     </div>
 
                 </div>
 
-            </div>
+            </div><div class="span4 pull-right">
+                      <div class="alert alert-info fade">
+                          <button type="button" class="close" data-dismiss="alert">×</button>
+                          <strong>Successful!</strong> Customer deleted successfully.
+                      </div>
+                  </div>
+              <br>
           </span>
 
           <hr>
+              <div class="container">
 
-          <!--    Div that contains customers list in a table format-->
+              </div>
+
+
+              <!--    Div that contains customers list in a table format-->
             <div id="customers-div" class="mx-auto col-sm-12" style="box-shadow: 1px 1px 1px 2px gray;padding:2%">
+
+
 
 
             </div>
           <div class="container">
               <ul class="pagination pagination-lg">
-                  <li id="prev-page"><a href="#" onclick="function decrementPNo() {
+                  <li id="prev-page" hidden><a href="#" onclick="function decrementPNo() {
                       pageNo=pageNo-1;
                       populateCustomer(customerData);
                   }
@@ -89,6 +101,7 @@
       </div>
     </div>
       <script src="/js/mainjs.js"></script>
+
   </th:block>
   </body>
 </html>

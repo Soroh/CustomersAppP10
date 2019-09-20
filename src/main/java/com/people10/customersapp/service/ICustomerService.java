@@ -19,4 +19,6 @@ public interface ICustomerService {
     Page<Customer> search(String search, int pageNo);
 
     List<Customer> findAll();
+
+    void saveAll(List<Customer> customers);
 }

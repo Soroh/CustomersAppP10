@@ -50,4 +50,9 @@ public class CustomerServiceImpl implements ICustomerService {
     public List<Customer> findAll() {
         return customerDao.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
     }
+
+    @Override
+    public void saveAll(List<Customer> customers) {
+        customerDao.saveAll(customers);
+    }
 }

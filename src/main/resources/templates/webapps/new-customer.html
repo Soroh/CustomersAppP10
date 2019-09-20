@@ -25,32 +25,37 @@
                 <div class="form-group col-md-6">
 
                     First Name:  <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: red" ></span><br>
-                    <input type="text" th:field="*{firstName}" name="firstName" class="form-control" required placeholder="First Name">
+                    <input type="text" th:field="*{firstName}" name="firstName" class="form-control" required placeholder="First Name" pattern="([a-zA-Z]).{1,}"
+                    title="Invalid Name">
                 </div>
                 <div class="form-group col-md-6">
-                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="alert alert-danger"></span>
-                    Last Name: <br>
-                    <input type="text" th:field="*{lastName}" name="lastName" class="form-control" required placeholder="Last Name">
+
+                    Last Name:<span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: red" > </span> <br>
+                    <input type="text" th:field="*{lastName}" name="lastName" class="form-control" required placeholder="Last Name"
+                     pattern="([a-zA-Z]).{1,}" title="Invalid Name">
                 </div>
                 <div class="form-group col-md-6">
-                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></span>
-                    Email Address: <br>
+
+                    Email Address: <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red" ></span><br>
                     <input type="email" th:field="*{email}" name="email" class="form-control" required placeholder="Email Address">
                 </div>
                 <div class="form-group col-md-6">
-                    <span th:if="${#fields.hasErrors('ip')}" th:errors="*{ip}"   class="alert alert-danger"></span>
-                    IP Address: <br>
-                    <input type="text" th:field="*{ip}" name="ip" class="form-control" required placeholder="Contact Phone Number">
+                    IP Address: <span th:if="${#fields.hasErrors('ip')}" th:errors="*{ip}"   style="color: red" ></span>
+                    <br>
+                    <input type="text" th:field="*{ip}" name="ip" class="form-control" required placeholder="IP Address e.g 19.65.78.62"
+                           pattern="[0-9]{1,3}[.][0-9]{1,3}.[0-9]{1,3}[.][0-9]{1,3}"title="Invalid IP Address">
                 </div>
                 <div class="form-group col-md-6">
-                    <span th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}" class="alert alert-danger"></span>
-                    Latitude: <br>
-                    <input type="text" th:field="*{latitude}" name="latitude" class="form-control" required placeholder="Date of Birth">
+                    Latitude:<span th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}" style="color: red" ></span>
+                    <br>
+                    <input type="text" th:field="*{latitude}" name="latitude" class="form-control" required placeholder="Latitude"
+                           pattern="[0-9]{1,}[.][0-9]{1,}" title="Invalid latitude value">
                 </div>
                 <div class="form-group col-md-6">
-                    <span th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}" class="alert alert-danger"></span>
-                    Longitude: <br>
-                    <input text="text" th:field="*{longitude}" name="longitude" class="form-control" required placeholder="Account Number">
+
+                    Longitude:<span th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}" style="color: red" ></span> <br>
+                    <input text="text" th:field="*{longitude}" name="longitude" class="form-control" required placeholder="Longitude"
+                           pattern="[0-9]{1,}[.][0-9]{1,}" title="Invalid longitude value">
                 </div>
 
                 <div class="form-group col-md-6">

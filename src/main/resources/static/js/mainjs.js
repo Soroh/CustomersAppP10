@@ -9,7 +9,24 @@ function loadCustomers() {
         url: "/customers",
         success: function (customers) {
             customerData=customers;
-            populateCustomer(customers);
+            if(customers.length){
+                document.getElementById("curr-page").style.display = "inline";
+                populateCustomer(customers);
+
+            }
+
+            else {
+                document.getElementById("next-page").style.display = "none";
+                document.getElementById("prev-page").style.display = "none";
+                document.getElementById("curr-page").style.display = "none";
+                document.getElementById("customers-div").innerHTML=   " <div id=\"alert-load-data\" className='alert alert-info' role='alert'>\"+\n" +
+                    "                    <h3 className='alert-heading'>Welcome to Customers Management System</h3>\n" +
+                    "                    <h4>If you are seeing this message, it means data is not yet loaded to the database. </h4> <hr>\n" +
+                    "                    <h4 className='mb-0'>Click on the button below to extract data from the CSV files and load it to the database.</h4>\n" +
+                    "                    <button type='button' class='btn btn-primary' onClick='loadData()'>Load Data</button>\n" +
+                    "                </div>"
+
+            }
     }
     });
     }
@@ -72,7 +89,7 @@ function getCustomer(customerId) {
 
 //Delete customer by ID
 function myDelFunction(customerId) {
-    if (confirm("Alert!!!!!!\nAre you sure you want to delete the user".concat(customerId).concat("?"))) {
+    if (confirm("Alert!!!!!!\n\nAre you sure you want to delete the customer record?" )) {
 
         $.ajax({
             type: "DELETE",
@@ -81,28 +98,27 @@ function myDelFunction(customerId) {
             success: function (result) {
                 if(result){
                     loadCustomers();
-                    window.alert('Successfully Deleted');//To be changed
+                    $(".alert").removeClass("in").show();
+                    $(".alert").delay(400).addClass("in").fadeOut(6000);
                 }
                 else
                     window.alert('There was an error deleting the customer.');
-            }
-            });
+            }});
     }
 }
 
-$("#search-bar").keyup(function (keyPressed) {
-    clearTimeout($.data(this, 'timer'));
+function search() {
+
+  clearTimeout($.data(this, 'timer'));
     if($("#search-bar").val()==="")
         loadCustomers();//loads data from database if search box empty
-    else if (keyPressed.keyCode === 13)
-        DataFromJson(true);
-    else{
-        $(this).data('timer', setTimeout(DataFromJson, 500));
-        //sets the timer between the key press from keyboard and the search
-    }
-})
+       else{
+        $(this).data('timer', setTimeout(searchData, 500));//sets the timer between the key press from keyboard and the search
 
-function DataFromJson(force){
+    }
+}
+
+function searchData(){
     var searchValue = $("#search-bar").val();        //fetching the value from the textbox
     pageNo=0
         $.ajax({
@@ -159,6 +175,7 @@ function populateCustomer(data){
 
             }else  document.getElementById("prev-page").style.display = "inline";
 
+            document.getElementById("curr-page").style.display = "inline";
             document.getElementById("curr-page").innerText="Page "+ (pageNo+1) +" of " + ((data.length%10==0)?data.length/10:Math.trunc(data.length/10+1));
 
         }
@@ -177,3 +194,29 @@ function populateCustomer(data){
        }
 }
 
+
+function loadData(){
+document.getElementById("alert-load-data").innerHTML="" +
+
+    "<div className='d-flex align-items-center'>"+
+        "<strong><h1>Loading...</h1></strong>"+
+        "<div className='spinner-border ml-auto' role='status' aria-hidden='true'></div></div>";
+
+
+    // "<div className='spinner-border' role='status'>" +
+    //     "<span className='sr-only'>Loading...</span></div>";
+
+    pageNo=0;
+    $.ajax({
+        type: "GET",
+        dataType: 'json',
+        url: "/customers/load-data",
+        success: function (customers) {
+            customerData=customers;
+            if(customers.length)
+                populateCustomer(customers);
+                    }
+    });
+
+
+}

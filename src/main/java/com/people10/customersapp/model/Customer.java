@@ -41,6 +41,23 @@ public class Customer {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+//    public Customer(@NotBlank(message = "Blank values not allowed**") String firstName,
+//                    @NotBlank(message = "Blank values not allowed**") String lastName,
+//                    @NotBlank(message = "Blank values not allowed**") String email,
+//                    @NotBlank(message = "Blank values not allowed**") String ip,
+//                    double latitude,
+//                    double longitude,
+//                    LocalDateTime createdAt)
+//    {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.ip = ip;
+//        this.latitude = latitude;
+//        this.longitude = longitude;
+//        this.createdAt = createdAt;
+//    }
+
     public Integer getCustomerId() {
         return customerId;
     }

@@ -46,7 +46,7 @@ public class HomeController {
         if (result.hasErrors())
             return "webapps/new-customer";
         customerService.saveCustomer(customer);
-        return "redirect:/";
+        return "redirect:/home/new-customer";
 
     }
 }
