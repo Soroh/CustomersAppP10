@@ -21,7 +21,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(){
-
         return "webapps/dashboard";
     }
 
@@ -34,7 +33,6 @@ public class HomeController {
     }
     @RequestMapping("/home/new-customer/{customerId}")
     public ModelAndView addCustomer(@PathVariable Integer customerId){
-
         ModelAndView mv = new ModelAndView("webapps/new-customer");
         mv.addObject("customer",customerService.findById(customerId));
         return mv;
@@ -42,11 +40,9 @@ public class HomeController {
 
     @PostMapping("/home/savecustomer")
     public String saveCustomer(@Valid @ModelAttribute Customer customer, BindingResult result){
-
         if (result.hasErrors())
             return "webapps/new-customer";
         customerService.saveCustomer(customer);
-        return "redirect:/home/new-customer";
-
+        return "redirect:/";
     }
 }

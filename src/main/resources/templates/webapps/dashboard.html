@@ -14,42 +14,36 @@
 
       <!-- Good luck -->
           <div class="mx-auto col-sm-12">
-          <span style="width:50%;float: left;"> <h1>Customer Dashboard</h1></span>
-
+          <span style="width:25%;float: left;"> <h2>Customer Dashboard</h2></span>
+              <div class="container" style="width: 35%;float: left;">
+                  <div class="span4 pull-right">
+                      <div class="alert alert-info fade">
+                          <button type="button" class="close" data-dismiss="alert">×</button>
+                          <strong>Successful!</strong> Customer deleted successfully.
+                      </div>
+                  </div></div>
           <span ><br>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width:35%;float: right;">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width:35%;float: right;">
 
                 <div class="form-inline ml-auto"  >
                     <div class="md-form my-0">
                         <input id="search-bar" class="form-control" type="text" name="search" required placeholder="Search" aria-label="Search"  onkeyup="search()">
                         <button href="#!" class="btn btn-primary btn-md my-0 ml-sm-2" onclick="searchData()"><i class="glyphicon glyphicon-search"></i> Search</button>
                     </div>
-
                 </div>
-
-            </div><div class="span4 pull-right">
-                      <div class="alert alert-info fade">
-                          <button type="button" class="close" data-dismiss="alert">×</button>
-                          <strong>Successful!</strong> Customer deleted successfully.
-                      </div>
-                  </div>
-              <br>
-          </span>
-
-          <hr>
-              <div class="container">
-
               </div>
 
-
-              <!--    Div that contains customers list in a table format-->
-            <div id="customers-div" class="mx-auto col-sm-12" style="box-shadow: 1px 1px 1px 2px gray;padding:2%">
+              <br>
+          </span>
+          <hr>
+                            <!--    Div that contains customers list in a table format-->
+          <div id="customers-div" class="mx-auto col-sm-12" style="box-shadow: 1px 1px 1px 2px gray;padding:2%">
 
 
 
 
             </div>
-          <div class="container">
+          <div class="container" >
               <ul class="pagination pagination-lg">
                   <li id="prev-page" hidden><a href="#" onclick="function decrementPNo() {
                       pageNo=pageNo-1;
@@ -100,8 +94,11 @@
         </div>
       </div>
     </div>
-      <script src="/js/mainjs.js"></script>
 
+
+
+    </div>
+      <script src="/js/mainjs.js"></script>
   </th:block>
   </body>
 </html>

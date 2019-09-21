@@ -2,7 +2,7 @@ package com.people10.customersapp.controller;
 
 import com.opencsv.CSVReader;
 import com.people10.customersapp.model.Customer;
-import com.people10.customersapp.service.CustomerServiceImpl;
+import com.people10.customersapp.service.implementation.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +50,7 @@ public class CustomerController {
 
     @PostMapping(value ="customer")
     public Customer saveCustomer(@RequestBody Customer customer){
-
+    System.out.print("I am here \n\n\n");
        return customerService.saveCustomer(customer);
 
     }
@@ -149,6 +149,8 @@ public class CustomerController {
         csvReader.close();
         return customers;
     }
+
+
 
 
 }

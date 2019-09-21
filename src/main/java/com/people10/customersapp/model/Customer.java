@@ -17,46 +17,34 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer customerId;
+
     @Column(nullable = true)
     @NotBlank(message = "Blank values not allowed**")
     private String firstName;
+
     @Column(nullable = true)
     @NotBlank(message = "Blank values not allowed**")
     private String lastName;
+
     @Column(nullable = true)
     @NotBlank(message = "Blank values not allowed**")
     private String email;
+
     @Column(nullable = true)
     @NotBlank(message = "Blank values not allowed**")
     private String ip;
+
     @Column(nullable = true)
     private double latitude;
+
     @Column(nullable = true)
     private double longitude;
+
     @Column(nullable = true)
-
-
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-//    public Customer(@NotBlank(message = "Blank values not allowed**") String firstName,
-//                    @NotBlank(message = "Blank values not allowed**") String lastName,
-//                    @NotBlank(message = "Blank values not allowed**") String email,
-//                    @NotBlank(message = "Blank values not allowed**") String ip,
-//                    double latitude,
-//                    double longitude,
-//                    LocalDateTime createdAt)
-//    {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.ip = ip;
-//        this.latitude = latitude;
-//        this.longitude = longitude;
-//        this.createdAt = createdAt;
-//    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -131,6 +119,7 @@ public class Customer {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 
     @Override
     public String toString() {
